@@ -30,7 +30,7 @@ module Shoes
       @context.show_text(text)
     end
 
-    def save_to_image(file)
+    def output_to_file(file)
       @surface.write_to_png(file)
     end
 

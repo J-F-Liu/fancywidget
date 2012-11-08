@@ -12,7 +12,7 @@ module Shoes
     end
 
     def paint
-      canvas.draw_background(rect, background)
+      canvas.fill_rect(rect, fill) if fill
       canvas.draw_text(@text_pos, font, color, text)
     end
 

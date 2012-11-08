@@ -8,10 +8,10 @@ class WidgetTest < MiniTest::Unit::TestCase
     widget = Widget.new nil
     assert_equal(true, widget.visible?)
 
-    widget.visible = false
+    widget.hidden = true
     assert_equal(false, widget.visible?)
 
-    widget.visible = true
+    widget.hidden = false
     assert_equal(true, widget.visible?)
 
     widget.hide

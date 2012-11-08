@@ -6,7 +6,7 @@ require_relative 'shoes/widget'
 require_relative 'shoes/canvas'
 require_relative 'shoes/canvas/cairocanvas'
 
-class AbstractMethodError < StandardError
+class AbstractMethodError < NotImplementedError
   def initialize
     super "Abstract method need be implemented in descendant class or object."
   end

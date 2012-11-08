@@ -2,41 +2,33 @@ module Shoes
 
   class Widget
 
-    attr_accessor :left, :top, :width, :height
-    attr_accessor :visible, :collapsed
     attr_reader :owner
+    include BoxStyle
+
+    def default_styles
+      {
+        left: 0,
+        top: 0,
+        width: 0,
+        height: 0,
+      }
+    end
 
     def initialize(owner, attributes = nil)
       @owner = owner
-      @left = 0
-      @top = 0
-      @width = 0
-      @height = 0
-      @visible = true
+      if attributes.nil?
+        attributes = default_styles
+      else
+        attributes = default_styles.merge attributes
+      end
+      set_attributes(attributes)
     end
 
-    def visible?
-      @visible ? true: false
-    end
-
-    def collapsed?
-      @collapsed ? true: false
-    end
-
-    def show
-      @visible = true
-    end
-
-    def hide
-      @visible = false
-    end
-
-    def expand
-      @collapsed = false
-    end
-
-    def collapse
-      @collapsed = true
+    def set_attributes(attributes)
+      attributes.each do |name, value|
+        varname = "@#{name}"
+        instance_variable_set(varname, value)
+      end
     end
 
     def window
@@ -86,6 +78,34 @@ module Shoes
       [width, height]
     end
 
+    def visible?
+      @hidden ? false: true
+    end
+
+    def collapsed?
+      @collapsed ? true: false
+    end
+
+    def show
+      @hidden = false
+    end
+
+    def hide
+      @hidden = true
+    end
+
+    def toggle
+      @hidden = !@hidden
+    end
+
+    def expand
+      @collapsed = false
+    end
+
+    def collapse
+      @collapsed = true
+    end
+
     def update_layout
       raise AbstractMethodError
     end
@@ -97,8 +117,9 @@ module Shoes
   end
 
   require_relative 'widget/container'
-  require_relative 'widget/window'
   require_relative 'widget/stack'
+  require_relative 'widget/flow'
+  require_relative 'widget/window'
   require_relative 'widget/label'
   require_relative 'widget/button'
 

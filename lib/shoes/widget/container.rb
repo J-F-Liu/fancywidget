@@ -3,6 +3,10 @@ module Shoes
 
     attr_accessor :widgets
 
+    def default_styles
+      super
+    end
+
     def initialize(owner, attributes = nil)
       super
       @widgets = []
@@ -15,7 +19,7 @@ module Shoes
     end
 
     def paint
-      canvas.draw_background(rect, background)
+      canvas.fill_rect(rect, fill) if fill
       widgets.each do |widget|
         widget.paint if widget.visible?
       end

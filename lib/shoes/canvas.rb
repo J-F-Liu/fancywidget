@@ -21,7 +21,7 @@ module Shoes
 
     def draw_background(rect, background)
       case background
-      when Symbol,Color
+      when Symbol, Color
         fill_rect(rect, background)
       end
     end 

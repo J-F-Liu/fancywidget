@@ -33,10 +33,12 @@ module Shoes
     attr_accessor :margin_bottom
     attr_accessor :border
     attr_accessor :padding
-    attr_accessor :fill
   end
 
   module ShapStyle
+    # fill color
+    attr_inheritable :fill
+
     # stroke color
     attr_inheritable :stroke
 

@@ -15,6 +15,15 @@ module Shoes
       canvas.fill_rect(rect, fill) if fill
       canvas.draw_text(@text_pos, font, color, text)
     end
+  end
 
+  class Container
+    def label(*attributes_and_text)
+      attributes, text = parse_hash_and_string(attributes_and_text)
+      label = Label.new(self, attributes)
+      label.text = text
+      widgets << label
+      label
+    end
   end
 end

@@ -4,7 +4,6 @@ module Shoes
     attr_accessor :title, :icon, :resizable
     attr_accessor :canvas
 
-    include BoxStyle
     include TextStyle
 
     def default_styles
@@ -21,6 +20,11 @@ module Shoes
     def initialize(attributes = nil)
       super(nil, attributes)
       @canvas = CairoCanvas.new(size)
+    end
+
+    def paint
+      super
+      @canvas.flush
     end
 
   end

@@ -10,6 +10,7 @@ module Shoes
       super(size)
       @surface = Cairo::ImageSurface.new(*size)
       @context = Cairo::Context.new(@surface)
+      puts @surface.format
     end
 
     def fill_rect(rect, color)
@@ -30,7 +31,15 @@ module Shoes
       @context.show_text(text)
     end
 
-    def output_to_file(file)
+    def data
+      @surface.data
+    end
+
+    def flush
+      @surface.flush
+    end
+
+    def output_png_file(file)
       @surface.write_to_png(file)
     end
 

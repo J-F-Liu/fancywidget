@@ -4,6 +4,7 @@ module Shoes
 
     attr_reader :owner
     include BoxStyle
+    include ShapStyle
 
     def default_styles
       {
@@ -115,12 +116,12 @@ module Shoes
     end
 
   end
-
-  require_relative 'widget/container'
-  require_relative 'widget/stack'
-  require_relative 'widget/flow'
-  require_relative 'widget/window'
-  require_relative 'widget/label'
-  require_relative 'widget/button'
-
 end
+
+require_relative 'helper/argumentpaser'
+require_relative 'widget/container'
+require_relative 'widget/stack'
+require_relative 'widget/flow'
+require_relative 'widget/window'
+require_relative 'widget/label'
+require_relative 'widget/button'

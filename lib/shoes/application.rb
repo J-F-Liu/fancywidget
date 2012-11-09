@@ -9,7 +9,7 @@ module Shoes
       @main_window = window
       window.update_layout
       window.paint
-      self
+      self.main_loop
     end
 
   end

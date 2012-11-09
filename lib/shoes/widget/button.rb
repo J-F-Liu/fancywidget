@@ -16,7 +16,16 @@ module Shoes
       else
         content.paint
       end
+    end    
+  end
+
+  class Container
+    def button(*attributes_and_content)
+      attributes, content = parse_hash_and_object(attributes_and_content)
+      button = Button.new(self, attributes)
+      button.content = content
+      widgets << button
+      button
     end
-    
   end
 end

@@ -68,12 +68,12 @@ module FancyWidget
         wc[:hbrBackground] = FFI::Pointer.new(
           ((WinAPI::WINVER == WinAPI::WINXP) ? WinAPI::COLOR_MENUBAR : WinAPI::COLOR_MENU) + 1
         )
-
         WinAPI::PWSTR(WinAPI::APPNAME) { |className|
           wc[:lpszClassName] = className
           WinAPI::DetonateLastError(0, :RegisterClassEx, wc)
         }
       }
+      
       hwnd = WinAPI::CreateWindowEx(
         0, WinAPI::APPNAME, WinAPI::L(self.title),
         WinAPI::WS_OVERLAPPEDWINDOW | WinAPI::WS_CLIPCHILDREN,

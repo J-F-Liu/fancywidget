@@ -16,7 +16,7 @@ module FancyWidget
     end
 
     def paint
-      canvas.fill_rect(rect, fill) if fill
+      canvas.fill_rect(rect, background) if background
       widgets.each do |widget|
         widget.paint if widget.visible?
       end

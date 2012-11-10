@@ -1,9 +1,9 @@
+include FancyWidget
 module Gui
-  include FancyWidget
   class << self
     def app(&block)
-      app = FancyWidget::Application.new
-      window = FancyWidget::Window.new
+      app = Application.new
+      window = Window.new
       if block
         block.arity < 1 ? window.instance_eval(&block) : block[window]
       end

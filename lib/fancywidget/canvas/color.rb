@@ -1,6 +1,6 @@
 require "cairo"
 
-module Shoes
+module FancyWidget
   class Color
 
   end

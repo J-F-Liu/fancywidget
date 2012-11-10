@@ -1,4 +1,4 @@
-module Shoes
+module FancyWidget
   class Background
 
     attr_accessor :fill

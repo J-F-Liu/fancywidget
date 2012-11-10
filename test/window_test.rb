@@ -1,7 +1,7 @@
 require 'minitest/autorun'
-require_relative '../lib/rubyinshoes'
+require_relative '../lib/fancywidget'
 
-include Shoes
+include FancyWidget
 
 class WindowTest < MiniTest::Unit::TestCase
   def test_window_attr

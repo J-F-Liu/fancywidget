@@ -1,6 +1,6 @@
 require_relative 'ffi-winapi'
 
-module Shoes
+module FancyWidget
   class Application
     def alert(message)
       WinAPI::MessageBox(

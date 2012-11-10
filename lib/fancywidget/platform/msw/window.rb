@@ -1,6 +1,6 @@
 require_relative 'ffi-winapi'
 
-module Shoes
+module FancyWidget
   class Window
     def onDestroy(hwnd)
       WinAPI::PostQuitMessage(0); 0

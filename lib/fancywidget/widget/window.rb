@@ -1,4 +1,4 @@
-module Shoes
+module FancyWidget
   class Window < Flow
 
     attr_accessor :title, :icon, :resizable
@@ -8,10 +8,10 @@ module Shoes
 
     def default_styles
       super.merge({
-        title: 'Shoes',
+        title: 'Fancy Widget',
         width: 600,
         height: 400,
-        fill: :white,
+        background: :white,
         color: :black,
         font: Font.new("Georgia", 16)
       })

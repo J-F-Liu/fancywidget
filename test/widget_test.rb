@@ -1,7 +1,7 @@
 require 'minitest/autorun'
-require_relative '../lib/rubyinshoes'
+require_relative '../lib/fancywidget'
 
-include Shoes
+include FancyWidget
 
 class WidgetTest < MiniTest::Unit::TestCase
   def test_widget_visibility

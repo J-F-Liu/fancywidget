@@ -1,7 +1,7 @@
 require 'cairo'
 require 'pango'
 
-module Shoes
+module FancyWidget
   Color = Cairo::Color::RGB
 
   class CairoCanvas < Canvas
@@ -10,7 +10,6 @@ module Shoes
       super(size)
       @surface = Cairo::ImageSurface.new(*size)
       @context = Cairo::Context.new(@surface)
-      puts @surface.format
     end
 
     def fill_rect(rect, color)

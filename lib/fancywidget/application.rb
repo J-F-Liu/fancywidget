@@ -1,4 +1,4 @@
-module Shoes
+module FancyWidget
   class Application
     attr_reader :main_window
 

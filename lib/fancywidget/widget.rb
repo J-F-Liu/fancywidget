@@ -1,4 +1,4 @@
-module Shoes
+module FancyWidget
 
   class Widget
 

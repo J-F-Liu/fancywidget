@@ -1,4 +1,4 @@
-module Shoes
+module FancyWidget
   class Container < Widget
 
     attr_accessor :widgets

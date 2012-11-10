@@ -2,7 +2,7 @@
 # require_relative 'canvas/color'
 require_relative 'canvas/font'
 
-module Shoes
+module FancyWidget
   class Canvas
     attr_accessor :size
 

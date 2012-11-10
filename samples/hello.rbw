@@ -1,3 +1,3 @@
-require_relative '../lib/rubyinshoes'
+require_relative '../lib/fancywidget'
 
-Shoes.app { label "Hello, world!" }
+Gui.app { label "Hello, world!" }

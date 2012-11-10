@@ -1,4 +1,4 @@
-module Shoes
+module FancyWidget
   class Font
     attr_accessor :familly, :size
 

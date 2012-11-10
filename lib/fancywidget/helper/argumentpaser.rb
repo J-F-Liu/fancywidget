@@ -1,4 +1,4 @@
-module Shoes
+module FancyWidget
   module ArgumentPaser
     def parse_hash_and_object(list)
       if list.length > 0

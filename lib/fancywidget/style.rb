@@ -20,7 +20,7 @@ class Module
   end
 end
 
-module Shoes
+module FancyWidget
 
   module BoxStyle
     attr_accessor :left, :top, :right, :bottom
@@ -32,6 +32,7 @@ module Shoes
     attr_accessor :margin_right
     attr_accessor :margin_bottom
     attr_accessor :border
+    attr_accessor :background
     attr_accessor :padding
   end
 

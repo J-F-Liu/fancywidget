@@ -7,24 +7,24 @@ module FancyWidget
         @hwnd, WinAPI::L(message), WinAPI::APPNAME, WinAPI::MB_ICONERROR)
     end
 
-    def main_loop
+    def mainloop
       @hwnd = main_window.create_handle
       exit(0) if @hwnd.null?
 
       WinAPI::ShowWindow(@hwnd, WinAPI::SW_SHOWNORMAL)
       WinAPI::UpdateWindow(@hwnd)
-
       WinAPI::MSG.new { |msg|
-        until WinAPI::DetonateLastError(-1, :GetMessage,
-          msg, nil, 0, 0
-        ) == 0
-          WinAPI::TranslateMessage(msg)
-          WinAPI::DispatchMessage(msg)
+        until msg[:message] == WinAPI::WM_QUIT
+          if WinAPI::PeekMessage(msg, @hwnd, 0, 0, WinAPI::PM_REMOVE) != 0
+            WinAPI::TranslateMessage(msg)
+            WinAPI::DispatchMessage(msg)
+          end
+          sleep(0.001)
         end
 
         exit(msg[:wParam])
       }
-    rescue
+    rescue Exception
       alert(WinAPI::Util.FormatException($!))
       exit(1)
     end

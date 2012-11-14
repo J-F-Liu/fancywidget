@@ -11,8 +11,8 @@ module FancyWidget
         title: 'Fancy Widget',
         width: 600,
         height: 400,
-        background: :white,
-        color: :black,
+        background: white,
+        color: black,
         font: Font.new("Georgia", 16)
       })
     end
@@ -25,6 +25,14 @@ module FancyWidget
     def paint
       super
       @canvas.flush
+    end
+
+    def method_missing(name, *args)
+      if COLORS.has_key?(name.to_sym)
+        return COLORS[name.to_sym]
+      else
+        super
+      end
     end
 
   end

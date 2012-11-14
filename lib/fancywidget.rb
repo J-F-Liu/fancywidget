@@ -6,10 +6,10 @@ module FancyWidget
   end
 end
 
+require_relative 'fancywidget/canvas'
 require_relative 'fancywidget/application'
 require_relative 'fancywidget/style'
 require_relative 'fancywidget/widget'
-require_relative 'fancywidget/canvas'
 require_relative 'fancywidget/canvas/cairocanvas'
 require_relative 'fancywidget/platform/msw'
 require_relative 'gui'

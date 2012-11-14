@@ -9,7 +9,7 @@ module FancyWidget
       @main_window = window
       window.update_layout
       window.paint
-      self.main_loop
+      self.mainloop
     end
 
   end

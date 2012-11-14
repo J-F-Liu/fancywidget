@@ -1,5 +1,5 @@
 
-# require_relative 'canvas/color'
+require_relative 'canvas/color'
 require_relative 'canvas/font'
 
 module FancyWidget

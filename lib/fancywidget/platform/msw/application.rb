@@ -12,7 +12,6 @@ module FancyWidget
       exit(0) if @hwnd.null?
 
       WinAPI::ShowWindow(@hwnd, WinAPI::SW_SHOWNORMAL)
-      WinAPI::UpdateWindow(@hwnd)
       WinAPI::MSG.new { |msg|
         until msg[:message] == WinAPI::WM_QUIT
           if WinAPI::PeekMessage(msg, @hwnd, 0, 0, WinAPI::PM_REMOVE) != 0

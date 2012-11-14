@@ -115,6 +115,14 @@ module FancyWidget
       raise AbstractMethodError
     end
 
+    def onclick(x, y)
+      @click.call if @click
+    end
+
+    def click(&block)
+      @click = block
+    end
+
   end
 end
 

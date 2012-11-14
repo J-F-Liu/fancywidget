@@ -34,6 +34,7 @@ module FancyWidget
     attr_accessor :border
     attr_accessor :background
     attr_accessor :padding
+    attr_accessor :click
   end
 
   module ShapStyle

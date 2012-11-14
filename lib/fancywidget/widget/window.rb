@@ -25,6 +25,13 @@ module FancyWidget
     def paint
       super
       @canvas.flush
+      @image = @canvas.data
+      self.redraw
+    end
+
+    def onclick(x, y)
+      super
+      paint
     end
 
     def method_missing(name, *args)

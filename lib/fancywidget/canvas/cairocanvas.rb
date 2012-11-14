@@ -12,6 +12,13 @@ module FancyWidget
       @context = Cairo::Context.new(@surface)
     end
 
+    def draw_rect(rect, color, line_width)
+      @context.set_source_color(color)
+      @context.rectangle(*rect)
+      @context.set_line_width(line_width)
+      @context.stroke
+    end
+
     def fill_rect(rect, color)
       @context.set_source_color(color)
       @context.rectangle(*rect)
@@ -19,7 +26,10 @@ module FancyWidget
     end
 
     def measure_text(font, text)
-      [100,font.size]
+      @context.select_font_face(font.familly)
+      @context.set_font_size(font.size)
+      extents = @context.text_extents(text)
+      [extents.width, extents.height]
     end
 
     def draw_text(pos, font, color, text)

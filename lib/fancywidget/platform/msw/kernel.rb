@@ -17,6 +17,6 @@ module Kernel
   end
   def ask_save_folder(message)
   end
-  def font(message)
+  def choose_font(message)
   end
 end

@@ -1,4 +1,5 @@
 require_relative 'ffi-winapi'
+require_relative 'kernel'
 
 module FancyWidget
   class Window
@@ -12,16 +13,34 @@ module FancyWidget
           bmpinfo[:header][:size] = bmpinfo[:header].size
           bmpinfo[:header][:width] = self.width
           bmpinfo[:header][:height] = self.height
-          bmpinfo[:header][:compression] = WinAPI::BI_RGB
           bmpinfo[:header][:planes] = 1
           bmpinfo[:header][:bitCount] = 32
+          bmpinfo[:header][:compression] = WinAPI::BI_RGB
           WinAPI::StretchDIBits(ps[:hdc], 0, 0, self.width, self.height,
-           0, self.height, self.width, -self.height, self.canvas.data,
+           0, self.height, self.width, -self.height, @image,
            bmpinfo, WinAPI::DIB_RGB_COLORS, WinAPI::SRCCOPY)
         }
       }
 
       0
+    end
+
+    def redraw
+      WinAPI::RedrawWindow(@handle, nil, nil, WinAPI::RDW_INVALIDATE)
+    end
+
+    def onLButtonDown(hwnd, x, y)
+    end
+    
+    def onLButtonUp(hwnd, x, y)
+      self.onclick(x, y)
+      0
+    end
+    
+    def onMouseMove(hwnd, x, y)
+    end
+    
+    def onRButtonDown(hwnd, x, y)
     end
 
     def create_message_processor
@@ -37,6 +56,15 @@ module FancyWidget
           WinAPI::DoPaint(hwnd) { |ps| result = onPaint(hwnd, ps) }
         when WinAPI::WM_PRINTCLIENT
           WinAPI::DoPrintClient(hwnd, wParam) { |ps| result = onPaint(hwnd, ps) }
+
+        when WinAPI::WM_LBUTTONDOWN
+          onLButtonDown(hwnd, WinAPI::LOSHORT(lParam), WinAPI::HISHORT(lParam))
+        when WinAPI::WM_LBUTTONUP
+          onLButtonUp(hwnd, WinAPI::LOSHORT(lParam), WinAPI::HISHORT(lParam))
+        when WinAPI::WM_MOUSEMOVE
+          onMouseMove(hwnd, WinAPI::LOSHORT(lParam), WinAPI::HISHORT(lParam))
+        when WinAPI::WM_RBUTTONDOWN
+          onRButtonDown(hwnd, WinAPI::LOSHORT(lParam), WinAPI::HISHORT(lParam))
         end
 
         result || WinAPI::DefWindowProc(hwnd, uMsg, wParam, lParam)
@@ -74,7 +102,7 @@ module FancyWidget
         }
       }
       
-      hwnd = WinAPI::CreateWindowEx(
+      @handle = WinAPI::CreateWindowEx(
         0, WinAPI::APPNAME, WinAPI::L(self.title),
         WinAPI::WS_OVERLAPPEDWINDOW | WinAPI::WS_CLIPCHILDREN,
         WinAPI::CW_USEDEFAULT, WinAPI::CW_USEDEFAULT,
@@ -83,9 +111,9 @@ module FancyWidget
       )
 
       raise "CreateWindowEx failed (last error: #{WinAPI::GetLastError()})" if
-        hwnd.null? && WinAPI::GetLastError() != 0
+        @handle.null? && WinAPI::GetLastError() != 0
 
-      return hwnd
+      return @handle
     end
   end
 end

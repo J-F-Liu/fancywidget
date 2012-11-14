@@ -556,6 +556,50 @@ module WinAPI
   WM_PRINT = 0x0317
   WM_PRINTCLIENT = 0x0318
 
+  WM_LBUTTONDOWN = 0x0201
+  WM_LBUTTONUP = 0x0202
+  WM_LBUTTONDBLCLK = 0x0203
+
+  WM_RBUTTONDOWN = 0x0204
+  WM_RBUTTONUP = 0x0205
+  WM_RBUTTONDBLCLK = 0x0206
+
+  WM_MBUTTONDOWN = 0x0207
+  WM_MBUTTONUP = 0x0208
+  WM_MBUTTONDBLCLK = 0x0209
+
+  WM_MOUSEWHEEL = 0x020a
+  if WINVER >= WINVISTA # WM_MOUSEHWHEEL
+    WM_MOUSEHWHEEL = 0x020e
+  end
+
+  WM_MOUSEMOVE = 0x0200
+
+  WM_SYSKEYDOWN = 0x0104
+  WM_SYSKEYUP = 0x0105
+
+  WM_SYSCHAR = 0x0106
+  WM_SYSDEADCHAR = 0x0107
+
+  WM_KEYDOWN = 0x0100
+  WM_KEYUP = 0x0101
+
+  WM_CHAR = 0x0102
+  WM_DEADCHAR = 0x0103
+
+  RDW_ERASE = 4
+  RDW_FRAME = 1024
+  RDW_INTERNALPAINT = 2
+  RDW_INVALIDATE = 1
+  RDW_NOERASE = 32
+  RDW_NOFRAME = 2048
+  RDW_NOINTERNALPAINT = 16
+  RDW_VALIDATE = 8
+  RDW_ERASENOW = 512
+  RDW_UPDATENOW = 256
+  RDW_ALLCHILDREN = 128
+  RDW_NOCHILDREN = 64
+
   attach_function :CreateWindowEx, :CreateWindowExW, [
     :ulong,
     :buffer_in,
@@ -578,6 +622,7 @@ module WinAPI
   attach_function :InvalidateRect, [:pointer, RECT.by_ref(:in), :int ], :int
   attach_function :GetUpdateRect, [:pointer, RECT.by_ref(:out), :int ], :int
   attach_function :UpdateWindow, [:pointer ], :int
+  attach_function :RedrawWindow, [:pointer, RECT.by_ref(:in), :pointer, :int ], :int
   attach_function :GetWindowLong, :GetWindowLongW, [:pointer, :int ], :long
 
   class PAINTSTRUCT < FFI::Struct

@@ -22,5 +22,15 @@ module FancyWidget
       end
     end
 
+    def onclick(x, y)
+      super
+      widgets.each do |widget|
+        # alert "#{widget.rect.inspect} (#{x}, #{y})"
+        if Rectangle.new(*widget.rect).include?(x, y)
+          widget.onclick(x, y)
+        end
+      end
+    end
+
   end
 end

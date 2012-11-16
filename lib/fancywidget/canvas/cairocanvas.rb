@@ -27,7 +27,7 @@ module FancyWidget
     end
 
     def fill_gradient(rect, gradient)
-      pattern = Cairo::LinearPattern.new(rect[0],rect[1],rect[0],rect[1]+rect[2])
+      pattern = Cairo::LinearPattern.new(rect[0],rect[1],rect[0],rect[1]+rect[3])
       pattern.add_color_stop(0, gradient.begin)
       pattern.add_color_stop(1, gradient.end)
       fill_pattern(rect, pattern)

@@ -14,7 +14,7 @@ module FancyWidget
       super.merge({
         padding: 8,
         border: Border.new(black, 1),
-        background: '#0000'..'#FFFF'
+        background: '#0000'..'#6666'
       })
     end
 

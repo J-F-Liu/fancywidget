@@ -2,7 +2,7 @@ module FancyWidget
 
   class Widget
 
-    attr_reader :owner
+    attr_accessor :owner
     include BoxStyle
     include ShapStyle
 

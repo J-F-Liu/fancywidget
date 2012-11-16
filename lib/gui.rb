@@ -2,10 +2,10 @@ include FancyWidget
 module Gui
   class << self
     def app(&block)
-      app = Application.new
+      app = Application.instance
       window = Window.new
       if block
-        block.arity < 1 ? window.instance_eval(&block) : block[window]
+        block.arity < 1 ? window.instance_exec(&block) : block[window]
       end
       app.run(window)
     end

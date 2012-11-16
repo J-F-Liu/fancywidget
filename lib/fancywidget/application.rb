@@ -1,5 +1,8 @@
+require 'singleton'
+
 module FancyWidget
   class Application
+    include Singleton
     attr_reader :main_window
 
     def initialize

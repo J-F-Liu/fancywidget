@@ -4,9 +4,29 @@ module FancyWidget
     attr_accessor :widgets
     include ArgumentPaser
 
+    def default_styles
+      super.merge({
+        width: :auto,
+        height: :auto
+      })
+    end
+
     def initialize(owner, attributes = nil)
       super
       @widgets = []
+    end
+
+    def add(widget)
+      widget.owner = self
+      @widgets << widget
+    end
+
+    def available_space
+      if width != :auto
+        width
+      else
+        owner.available_space
+      end
     end
 
     def update_layout

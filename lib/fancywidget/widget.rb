@@ -80,7 +80,7 @@ module FancyWidget
     end
 
     def visible?
-      @hidden ? false: true
+      !@hidden and !@collapsed
     end
 
     def collapsed?
@@ -112,7 +112,8 @@ module FancyWidget
     end
 
     def paint
-      raise AbstractMethodError
+      canvas.fill_background(rect, background) if background
+      canvas.draw_rect(rect, border.color, border.width) if border
     end
 
     def onclick(x, y)

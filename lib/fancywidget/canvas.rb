@@ -1,6 +1,7 @@
 
 require_relative 'canvas/color'
 require_relative 'canvas/font'
+require_relative 'canvas/border'
 
 module FancyWidget
   class Canvas
@@ -19,10 +20,14 @@ module FancyWidget
     def draw_text(pos, font, color, text)
     end
 
-    def draw_background(rect, background)
+    def fill_background(rect, background)
       case background
       when Symbol, Color
         fill_rect(rect, background)
+      when Range
+        fill_gradient(rect, background)
+      when Pattern
+        fill_pattern(rect, background)
       end
     end 
 

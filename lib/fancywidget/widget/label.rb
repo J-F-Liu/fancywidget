@@ -8,7 +8,7 @@ module FancyWidget
 
     def default_styles
       super.merge({
-        padding: 4
+        padding: 6
       })
     end
 
@@ -20,7 +20,7 @@ module FancyWidget
     end
 
     def paint
-      canvas.fill_rect(rect, background) if background
+      super
       canvas.draw_text([x + padding, y + padding + @text_height], font, color, text)
     end
   end

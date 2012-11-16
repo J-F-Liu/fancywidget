@@ -34,13 +34,5 @@ module FancyWidget
       paint
     end
 
-    def method_missing(name, *args)
-      if COLORS.has_key?(name.to_sym)
-        return COLORS[name.to_sym]
-      else
-        super
-      end
-    end
-
   end
 end

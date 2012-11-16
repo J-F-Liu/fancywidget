@@ -3,6 +3,7 @@ require 'pango'
 
 module FancyWidget
   Color = Cairo::Color::RGB
+  Pattern = Cairo::Pattern
 
   class CairoCanvas < Canvas
 
@@ -22,6 +23,19 @@ module FancyWidget
     def fill_rect(rect, color)
       @context.set_source_color(color)
       @context.rectangle(*rect)
+      @context.fill
+    end
+
+    def fill_gradient(rect, gradient)
+      pattern = Cairo::LinearPattern.new(rect[0],rect[1],rect[0],rect[1]+rect[2])
+      pattern.add_color_stop(0, gradient.begin)
+      pattern.add_color_stop(1, gradient.end)
+      fill_pattern(rect, pattern)
+    end
+
+    def fill_pattern(rect, pattern)
+      @context.rectangle(*rect)
+      @context.set_source(pattern)
       @context.fill
     end
 

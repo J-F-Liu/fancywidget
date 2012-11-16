@@ -16,6 +16,22 @@ module Kernel
   def gray(g, a=1.0)
     rgb(g, g, g, a)
   end
+
+  def gradient(points, color_stops)
+    pattern = Cairo::LinearPattern.new(points[0][0],points[0][1],points[1][0],points[1][1])
+    color_stops.each do |offset, color|
+      pattern.add_color_stop(offset, color)
+    end
+    pattern
+  end
+
+  def method_missing(name, *args)
+    if FancyWidget::COLORS.has_key?(name.to_sym)
+      return FancyWidget::COLORS[name.to_sym]
+    else
+      super
+    end
+  end
 end
 
 module FancyWidget

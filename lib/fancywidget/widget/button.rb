@@ -12,11 +12,13 @@ module FancyWidget
 
     def default_styles
       super.merge({
-        padding: 4
+        padding: 8,
+        border: Border.new(black, 1),
+        background: '#0000'..'#FFFF'
       })
     end
 
-    def update_layout      
+    def update_layout
       if content.is_a? String
         text_size = canvas.measure_text(font, content)
         @text_height = text_size[1]
@@ -28,8 +30,7 @@ module FancyWidget
     end
 
     def paint
-      canvas.fill_rect(rect, background) if background
-      canvas.draw_rect(rect, color, 1)
+      super
       if content.is_a? String
         canvas.draw_text([x + padding, y + padding + @text_height], font, color, content)
       elsif content.is_a? Widget

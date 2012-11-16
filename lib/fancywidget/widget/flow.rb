@@ -5,7 +5,7 @@ module FancyWidget
       super
       x, y, h = 0, 0, 0
       widgets.each do |widget|
-        if widget.visible?
+        if not widget.collapsed?
           if x > 0 and x + widget.width > self.width
             x, y, h = 0, h, 0
           end

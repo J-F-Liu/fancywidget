@@ -11,7 +11,7 @@ module FancyWidget
 
     def update_layout
       widgets.each do |widget|
-        widget.update_layout if widget.visible?
+        widget.update_layout if not widget.collapsed?
       end
     end
 

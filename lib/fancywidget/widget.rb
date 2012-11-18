@@ -2,7 +2,7 @@ module FancyWidget
 
   class Widget
 
-    attr_accessor :owner
+    attr_reader :owner
     include BoxStyle
     include ShapStyle
 
@@ -17,6 +17,7 @@ module FancyWidget
 
     def initialize(owner, attributes = nil)
       @owner = owner
+      @owner.widgets << self if owner.is_a? Container
       if attributes.nil?
         attributes = default_styles
       else
@@ -32,11 +33,14 @@ module FancyWidget
       end
     end
 
-    def window
+    def window(&block)
       widget = self
       until widget.is_a? Window
         widget = widget.owner
         break if widget.nil?
+      end
+      if widget and block
+        widget.instance_exec(&block)
       end
       widget
     end
@@ -129,8 +133,8 @@ end
 
 require_relative 'helper/argumentpaser'
 require_relative 'widget/container'
-require_relative 'widget/stack'
 require_relative 'widget/flow'
 require_relative 'widget/window'
+require_relative 'widget/stack'
 require_relative 'widget/label'
 require_relative 'widget/button'

@@ -39,12 +39,11 @@ module FancyWidget
     end    
   end
 
-  class Container
+  class Window
     def button(*attributes_and_content)
       attributes, content = parse_hash_and_object(attributes_and_content)
-      button = Button.new(self, attributes)
+      button = Button.new(current_container, attributes)
       button.content = content
-      widgets << button
       button
     end
   end

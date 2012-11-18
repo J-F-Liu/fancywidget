@@ -25,12 +25,11 @@ module FancyWidget
     end
   end
 
-  class Container
+  class Window
     def label(*attributes_and_text)
       attributes, text = parse_hash_and_string(attributes_and_text)
-      label = Label.new(self, attributes)
+      label = Label.new(current_container, attributes)
       label.text = text
-      widgets << label
       label
     end
   end

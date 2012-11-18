@@ -16,11 +16,6 @@ module FancyWidget
       @widgets = []
     end
 
-    def add(widget)
-      widget.owner = self
-      @widgets << widget
-    end
-
     def available_space
       if width != :auto
         width

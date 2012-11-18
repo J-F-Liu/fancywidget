@@ -17,15 +17,12 @@ module FancyWidget
 
   end
 
-  class Container
+  class Window
     def stack(attributes = nil, &block)
-      stack = Stack.new(self, attributes)
-      count = widgets.length
-      self.instance_exec(&block)
-      if (added = widgets.length - count) > 0
-        widgets.pop(added).each {|w| stack.add(w)}
+      stack = Stack.new(current_container, attributes)
+      with_container(stack) do
+        self.instance_exec(&block)
       end
-      widgets << stack
       stack
     end
   end
